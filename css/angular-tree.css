@@ -1,0 +1,37 @@
+.tree-node {
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.4s;    
+}
+.tree-node:hover {
+  background-color: #ddd;
+}
+.tree-icon {
+  cursor: pointer;
+  margin: 0 5px;
+  top: 2px;
+}
+.leaf-node {
+  margin: 5px 0 5px 24px;
+}
+.non-leaf-node {
+  margin: 5px 0;
+}
+.child-nodes-show {
+  margin-left: 13px; 
+  transition: 0.7s ease-in-out; 
+  opacity: 1;
+  max-height: 100%;    
+}
+.tree-container {
+  width: 560px;
+  overflow-x: scroll; 
+  overflow-y: hidden;    
+}
+.panel-heading {
+  padding: 0px !important;
+  margin: 3px !important;    
+}
+.edit-node {
+  margin-left: 24px;
+}

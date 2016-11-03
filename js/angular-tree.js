@@ -25,8 +25,8 @@ tree.directive('node',['$compile',function($compile){
     },  
     template: '<div class="panel-heading">' +
                 '<div class="tree-node" ng-if="!node.removed">' +
-                  '<span class="tree-icon glyphicon glyphicon-chevron-down" ng-if="node.nodes.length>0 && node.showNodes" ng-click="toggle()"></span>' +
-                  '<span class="tree-icon glyphicon glyphicon-chevron-right" ng-if="node.nodes.length>0 && !node.showNodes" ng-click="toggle()"></span>' +
+                  '<span class="tree-icon glyphicon glyphicon-chevron-down" ng-show="node.nodes.length>0 && node.showNodes" ng-click="toggle()"></span>' +
+                  '<span class="tree-icon glyphicon glyphicon-chevron-right" ng-show="node.nodes.length>0 && !node.showNodes" ng-click="toggle()"></span>' +
                   '<span ng-class="{\'leaf-node\': node.nodes.length==0,\'non-leaf-node\': node.nodes.length>0}" ' +
                     'ng-dblclick="editNode()" ng-if="!node.editing">{{node.title}}</span>' +
                   '<input ng-class="{\'edit-node\': node.nodes.length==0}" type="text" ng-model="node.title" ng-if="node.editing"  id="node{{node.id}}"/>' + 

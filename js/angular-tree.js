@@ -60,19 +60,42 @@ tree.directive('node',['$compile',function($compile){
           showNodes: false,
           editing: true,    
           nodes: [],
-          new: true    
+          new: true,
+          id: fetchRandomNum()    
         }); 
-        if(scope.node.nodes.length==1){  
+        if(scope.node.nodes.length==1){
+            elem.html(this.template);
             elem.append('<div class="child-nodes-show" ng-if="node.showNodes">' +
                             '<node ng-repeat="nodeData in node.nodes" node="nodeData"></node>' +
                         '</div>' +
                         '</div>');
-            $compile(elem.contents())(scope);  
+            $compile(elem.contents())(scope); 
         }
       };
       scope.removeNode = function(){
         scope.node.removed = true;
-        elem[0].parentElement.removeChild(elem[0]);
+        var parentScope = angular.element(elem[0].parentElement).scope(); 
+        if(angular.isDefined(parentScope.node)){  
+            var flag = true;
+            for(i in parentScope.node.nodes){
+                if(!parentScope.node.nodes[i].removed){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                parentScope.node.showNodes = false;
+                parentScope.node.nodes.length = 0;
+            }  
+        }
+        else {
+            for(i in parentScope.nodes){
+                if(parentScope.nodes[i].id == scope.node.id){
+                    parentScope.nodes.splice(i,1);
+                }
+            };
+        }
+        elem[0].parentElement.removeChild(elem[0]);         
       };    
       if(scope.node.nodes.length>0){
         scope.node.showNodes = false;
@@ -82,6 +105,9 @@ tree.directive('node',['$compile',function($compile){
                     '</div>');
         $compile(elem.contents())(scope);
       }
+      function fetchRandomNum(){
+          return Math.floor(Math.random() * 2000000);
+      }    
     }
   }
 }]);

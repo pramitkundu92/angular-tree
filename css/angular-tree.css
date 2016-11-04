@@ -17,11 +17,18 @@
 .non-leaf-node {
   margin: 5px 0;
 }
-.child-nodes-show {
+.child-nodes {
   margin-left: 13px; 
-  transition: 0.7s ease-in-out; 
   opacity: 1;
-  max-height: 100%;    
+  max-height: 100%; 
+  animation: fadein 1s ease-in-out;    
+}
+@keyframes fadein{
+    0% {opacity: 0}
+    25% {opacity: 0.25}
+    50% {opacity: 0.5}
+    75% {opacity: 0.75}
+    100% {opacity: 1}
 }
 .tree-container {
   width: 560px;

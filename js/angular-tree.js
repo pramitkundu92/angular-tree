@@ -65,7 +65,7 @@ tree.directive('node',['$compile',function($compile){
         }); 
         if(scope.node.nodes.length==1){
             elem.html(this.template);
-            elem.append('<div class="child-nodes-show" ng-if="node.showNodes">' +
+            elem.append('<div class="child-nodes" ng-if="node.showNodes">' +
                             '<node ng-repeat="nodeData in node.nodes" node="nodeData"></node>' +
                         '</div>' +
                         '</div>');
@@ -99,14 +99,14 @@ tree.directive('node',['$compile',function($compile){
       };    
       if(scope.node.nodes.length>0){
         scope.node.showNodes = false;
-        elem.append('<div class="child-nodes-show" ng-if="node.showNodes">' +
+        elem.append('<div class="child-nodes" ng-if="node.showNodes">' +
                         '<node ng-repeat="nodeData in node.nodes" node="nodeData"></node>' +
                     '</div>' +
                     '</div>');
         $compile(elem.contents())(scope);
       }
       function fetchRandomNum(){
-          return Math.floor(Math.random() * 2000000);
+          return scope.id || Math.floor(Math.random() * 2000000);
       }    
     }
   }
